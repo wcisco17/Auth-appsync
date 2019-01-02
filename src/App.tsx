@@ -1,26 +1,32 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { PureComponent } from 'react';
+import { Navigation } from './components/molecules/Navigation';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Auth } from 'aws-amplify';
+import { Dash } from './components/pages/Authenticated/Dash';
 
-class App extends Component {
+class App extends PureComponent {
+  state = {
+    authenticated: ""
+  }
+
+  async componentWillMount() {
+    const authenticated = await Auth.currentSession();
+    this.setState({ authenticated })
+  }
   render() {
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <React.Fragment>
+        {/* {this.state.authenticated ? */}
+        <Dash />
+        {/* //   : */}
+        {/* //   <BrowserRouter>
+        //     <Switch>
+        //       <Route path="/" component={Navigation} />
+        //     </Switch>
+        //   </BrowserRouter>
+        // } */}
+      </React.Fragment>
     );
   }
 }

@@ -1,0 +1,13 @@
+{
+    "AppSyncApiName": "Restaurant",
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authcognito9c4a646f",
+            "Outputs.UserPoolId"
+        ]
+    },
+    "schemaGraphql": "s3://eatitgodash-20181230185131-deployment/amplify-appsync-files/schema.graphql.1546214831119",
+    "ResolverBucket": "eatitgodash-20181230185131-deployment",
+    "ResolverRootKey": "amplify-appsync-files",
+    "DeploymentTimestamp": "1546214831119"
+}

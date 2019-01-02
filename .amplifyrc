@@ -1,0 +1,14 @@
+{
+    "providers": {
+        "awscloudformation": {
+            "AuthRoleName": "eatitgodash-20181230185131-authRole",
+            "UnauthRoleArn": "arn:aws:iam::204663970484:role/eatitgodash-20181230185131-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::204663970484:role/eatitgodash-20181230185131-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "eatitgodash-20181230185131-deployment",
+            "UnauthRoleName": "eatitgodash-20181230185131-unauthRole",
+            "StackName": "eatitgodash-20181230185131",
+            "StackId": "arn:aws:cloudformation:us-east-1:204663970484:stack/eatitgodash-20181230185131/d561a8a0-0c8d-11e9-a2ae-0af1b2bb447e"
+        }
+    }
+}
