@@ -3,9 +3,12 @@ import { useState } from "react";
 import { Login } from '../pages/Login';
 import { SignUp } from '../pages/SignUp';
 
+interface Props {
+    success: boolean
+    confirm: () => void
+}
 
-
-export const Auth = () => {
+export const Authentication = (props: Props) => {
     const [modal, onModal] = useState("modal");
     const [close, onClose] = useState("");
 
@@ -30,6 +33,8 @@ export const Auth = () => {
                 <SignUp
                     modules={modules}
                     onModule={onModule}
+                    success={props.success}
+                    confirm={props.confirm}
                     close={close} onClose={onClose} />
             </div>
         </React.Fragment>

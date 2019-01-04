@@ -39,8 +39,8 @@ export const Login = (props: Show) => {
                         onSubmit={async ({ username, password }, { resetForm }) => {
                             try {
                                 const response = await Auth.signIn({ username, password })
-                                if (!response) {
-                                    console.log("Response Error: ", response)
+                                if (response) {
+                                    console.log('Success : )', response)
                                 }
                                 return response
                             } catch (err) {

@@ -157,5 +157,98 @@
 
 .err {
   color: red;
-  font-size: 1.5rem;
+  font-size: 1rem;
+}
+
+.confirm {
+  display: none;
+}
+
+.suc {
+  margin: 0 auto;
+  display: block;
+  position: relative;
+  right: 600px;
+}
+
+.container-dashboard {
+  display: grid;
+  grid-auto-rows: minmax(300px, auto);
+  grid-template-columns: 400px;
+  grid-template-areas:
+    "avatar boxes1"
+    "avatar  boxes2"
+    "avatar boxes3"
+  ;
+}
+
+.avatar {
+  grid-area: avatar;
+  text-align: center;
+  padding-top: 2rem;
+}
+
+.a {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.boxes1 {
+  grid-area: boxes1;
+  padding-top: 2rem;
+  padding-left: 50px;
+  border-bottom: 0.8px solid #2d3651;
+  display: flex;
+
+  justify-content: space-between;
+
+}
+
+.boxes1 p {
+  padding-top: 10px;
+}
+
+.boxes2 p {
+  padding-top: 10px;
+}
+
+.boxes3 p {
+  padding-top: 10px;
+}
+
+.boxes2 {
+  grid-area: boxes2;
+  padding-top: 1rem;
+  padding-left: 50px;
+  border-bottom: 0.8px solid #2d3651;
+  display: flex;
+
+  justify-content: space-between;
+}
+
+.boxes3 {
+  padding-top: 1rem;
+  padding-left: 50px;
+  grid-area: boxes3;
+  display: flex;
+
+  justify-content: space-between;
+}
+
+.head-1 {
+  border-bottom: 1.5px solid #eaaa1b;
+  width: 80px;
+}
+
+
+
+.form-containers {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding-top: 2rem;
 }

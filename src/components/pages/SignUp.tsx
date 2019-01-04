@@ -6,17 +6,17 @@ import Close from '@material-ui/icons/Close';
 import { Auth } from 'aws-amplify'
 
 import { Formik } from 'formik'
+import { Confirm } from './Confirm';
 
 interface SignUpValues {
     username: string
     password: string
     email: string
-    phone_number: string
 }
 
 
 export const SignUp = (props: SignUpShow) => {
-    let [message, onMessage] = React.useState("");
+    let [message, onMessage] = React.useState("")
     return (
         <React.Fragment>
             <div className="modal__content2">
@@ -34,36 +34,38 @@ export const SignUp = (props: SignUpShow) => {
                             username: "",
                             password: "",
                             email: "",
-                            phone_number: ""
                         }}
-                        onSubmit={async ({ username, password, email, phone_number }, { resetForm }) => {
+                        onSubmit={async ({ username, password, email }, { resetForm }) => {
                             try {
                                 const response = await Auth.signUp({
                                     username,
                                     password,
                                     attributes: {
                                         email,
-                                        phone_number,
+                                        given_name: "",
+                                        family_name: "",
+                                        phone_number: ""
                                     },
                                 })
-                                if (!response) {
-                                    console.log("Response Error: ", response)
+                                if (response) {
+                                    props.confirm()
                                 }
                                 return response
                             } catch (err) {
                                 console.log("Error: ", err.message)
 
-                                onMessage(err.message)
+                                onMessage(JSON.stringify(err.message))
                             }
                             resetForm()
                         }}
                     >
                         {({ values, handleChange, handleSubmit }) => {
+                            console.log(message)
                             return (
                                 <React.Fragment>
-                                    {
-                                        <p className="err" >{message}</p> && null
-                                    }
+                                    <div>
+                                        <p className="err" >{message}</p>
+                                    </div>
                                     <form onSubmit={handleSubmit} className="form-container" >
                                         <div>
                                             <TextField name="username"
@@ -81,13 +83,6 @@ export const SignUp = (props: SignUpShow) => {
                                         </div>
                                         <div>
                                             <TextField name="email" value={values.email} label="Email ..."
-                                                type="text"
-                                                onChange={handleChange}
-                                                required
-                                            />
-                                        </div>
-                                        <div>
-                                            <TextField name="phone_number" value={values.phone_number} label="Phone Number ..."
                                                 type="text"
                                                 onChange={handleChange}
                                                 required

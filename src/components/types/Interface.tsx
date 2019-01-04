@@ -10,4 +10,6 @@ export interface SignUpShow {
     modules: string
     close: string
     onClose: Function
+    success: boolean
+    confirm: () => void
 }
