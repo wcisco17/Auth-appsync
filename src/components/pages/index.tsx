@@ -26,6 +26,7 @@ export const Authentication = (props: Props) => {
             </div>
             <div className={`${modal} ${close}`} >
                 <Login
+                    history={props}
                     modal={modal} close={close} onModal={onModal} onClose={onClose} />
             </div>
 

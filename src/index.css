@@ -19,7 +19,8 @@
 
 .link-container {
   display: flex;
-  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .link-container>div {
@@ -251,4 +252,16 @@
   justify-content: center;
   flex-direction: column;
   padding-top: 2rem;
+}
+
+.none {
+  display: none;
+}
+
+.confirming {
+  display: none;
+}
+
+.complete {
+  display: none;
 }

@@ -6,29 +6,27 @@ interface Props {
     authenticated: any
 
 }
-interface EditNameInput {
-    given_name: string
-    last_name: string
+interface EditContactInput {
+    phone_number: string
 }
 
-export const EditName = (props: Props) => {
+export const EditContact = (props: Props) => {
     let user = props.authenticated
     return (
         <div>
-            <Formik<EditNameInput>
+            <Formik<EditContactInput>
                 initialValues={{
-                    given_name: "",
-                    last_name: ""
+                    phone_number: ""
                 }}
-                onSubmit={async ({ given_name, last_name }, { resetForm }) => {
+                onSubmit={async ({ phone_number }, { resetForm }) => {
+                    let phone: string = "+1"
                     try {
                         const res = await Auth.updateUserAttributes(user, {
-                            'given_name': given_name,
-                            'last_name': last_name
+                            'phone_number': phone_number
                         })
                         if (res) {
                             console.log('Changed! ', res)
-                            alert("Name Changed!")
+                            alert("Phone Changed!")
                         }
                     } catch (err) {
                         console.log("Error: ", err.message)
@@ -41,15 +39,8 @@ export const EditName = (props: Props) => {
                         <React.Fragment>
                             <form onSubmit={handleSubmit} className="form-containers" >
                                 <div>
-                                    <TextField name="given_name"
-                                        value={values.given_name} label="First Name ..."
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </div>
-                                <div>
-                                    <TextField name="last_name"
-                                        value={values.last_name} label="Last Name ..."
+                                    <TextField name="phone_number"
+                                        value={values.phone_number} label="Phone Number ..."
                                         onChange={handleChange}
                                         required
                                     />

@@ -19,17 +19,23 @@ interface LoginValues {
 
 export const Login = (props: Show) => {
     let [message, onMessage] = React.useState("")
+    console.log(props.history)
     return (
         <React.Fragment>
             <div className="modal__content">
                 <div className="close-login" >
                     <Close className="cursor-close"
                         onClick={() => {
-                            props.onModal("none")
+                            props.onModal === undefined ? null : props.onModal("none")
                         }}
                     />
                 </div>
                 <div className="modules_login">
+                    <div>
+                        <Button style={{ color: "white" }} >
+                            Forgot Passoword ?
+                    </Button>
+                    </div>
                     <h4>Login Page</h4>
                     <Formik<LoginValues>
                         initialValues={{
@@ -44,8 +50,6 @@ export const Login = (props: Show) => {
                                 }
                                 return response
                             } catch (err) {
-                                console.log("Error: ", err.message)
-
                                 onMessage(err.message)
                             }
                             resetForm()
@@ -54,9 +58,7 @@ export const Login = (props: Show) => {
                         {({ values, handleChange, handleSubmit }) => {
                             return (
                                 <React.Fragment>
-                                    {
-                                        <p className="err" >{message}</p> && null
-                                    }
+                                    <p className="err" style={{ fontSize: "1rem" }} >{message}</p>
                                     <form onSubmit={handleSubmit} className="form-container" >
                                         <div>
                                             <TextField name="username"

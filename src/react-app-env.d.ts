@@ -1,5 +1,9 @@
 /// <reference types="react-scripts" />
 import * as React from "react";
+declare module 'react-static-routes' {
+  import * as React from 'react';
+  export class Routes extends React.Component { }
+}
 
 declare module "react" {
   // Suspense

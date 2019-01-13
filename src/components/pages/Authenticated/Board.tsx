@@ -3,23 +3,35 @@ import * as React from 'react'
 import { Avatar, Button } from '@material-ui/core';
 import { EditName } from '../../molecules/Forms/EditName';
 import { Auth } from 'aws-amplify';
+import { EditContact } from '../../molecules/EditContact';
+
+import { RouteComponentProps } from 'react-router-dom';
+
+
 interface Props {
     authenticated: any
+    history: any
 }
 
-const signOut = async () => {
-    try {
-        const out = await Auth.signOut()
-        if (out) {
-            console.log('Success', out)
-        }
-        return out
-    } catch (err) {
-        console.log('Error: ', err)
-    }
-}
+
+
 
 export const Board = (props: Props) => {
+    const signOut = async () => {
+        try {
+            const out = await Auth.signOut()
+            if (out) {
+                console.log('Success', out)
+                props.history.push("/out")
+                alert("You are finally signed out")
+            }
+            return out
+        } catch (err) {
+            console.log('Error: ', err)
+        }
+    }
+
+    console.log(props.history.push)
     const user = props.authenticated.username[0].toUpperCase()
     const email = props.authenticated.attributes.email
 
@@ -56,7 +68,10 @@ export const Board = (props: Props) => {
                     </div>
 
                     <Button
-                        onClick={() => signOut()}
+                        onClick={() => {
+                            signOut()
+                            props.history.push("/")
+                        }}
                         type="submit" variant="contained" color="secondary">
                         Sign Out
                         </Button>
@@ -135,14 +150,45 @@ export const Board = (props: Props) => {
                         CONTACT
             </h4>
                     <p>Add your mobile phone here</p>
+                    <div>
+                        <p>
+                            Phone Number: {props.authenticated.attributes.phone_number}
+                        </p>
+                    </div>
                 </div>
+                {edit === false ?
+                    null :
+                    (
+                        <div>
+                            <EditContact authenticated={props.authenticated} />
+                        </div>
+
+                    )}
                 <div style={{ paddingRight: 30 }} >
-                    <Button style={{
-                        color: "#2d3651",
-                        fontWeight: "bold"
-                    }}>
-                        Edit contact
+                    {edit === false ? (
+                        <Button
+                            onClick={() => onEdit(true)}
+                            style={{
+                                color: "#2d3651",
+                                fontWeight: "bold"
+                            }} >
+                            Edit CONTACT
                     </Button>
+
+                    )
+                        :
+                        (
+                            <Button
+                                onClick={() => onEdit(false)}
+                                style={{
+                                    color: "red",
+                                    fontWeight: "bold"
+                                }} >
+                                Cancel
+                    </Button>
+                        )
+
+                    }
                 </div>
             </div>
         </section>
